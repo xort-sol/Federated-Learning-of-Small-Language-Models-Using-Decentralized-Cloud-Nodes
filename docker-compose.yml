@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  aggregator:
+    build: ./aggregator
+    ports:
+      - "8000:8000"
+
+  client1:
+    build: ./client
+    environment:
+      - AGGREGATOR_URL=http://aggregator:8000
+    depends_on:
+      - aggregator
+
+  client2:
+    build: ./client
+    environment:
+      - AGGREGATOR_URL=http://aggregator:8000
+    depends_on:
+      - aggregator
+
+  client3:
+    build: ./client
+    environment:
+      - AGGREGATOR_URL=http://aggregator:8000
+    depends_on:
+      - aggregator
